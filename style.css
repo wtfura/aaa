@@ -1,4 +1,7 @@
-@import url("https://use.typekit.net/jmk3xov.css");
+/* @import url("https://use.typekit.net/jmk3xov.css"); */
+@import url('https://fonts.googleapis.com/css2?family=Russo+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
 
 canvas {
   position: fixed;
@@ -11,7 +14,7 @@ canvas {
   --dark-bg: rgba(15, 15, 15, 0.95);
   --spacing: 350px;
 
-  font-family: brandon-grotesque, sans-serif;
+  font-family: 'Oswald', sans-serif;
   font-weight: 400;
   font-style: normal;
 }
@@ -31,7 +34,7 @@ main {
 }
 
 h1, h2, h3, blockquote {
-  font-family: elevon, sans-serif;
+  font-family: 'Russo One', sans-serif;
   font-weight: 700;
   font-style: normal;
 }
@@ -57,7 +60,7 @@ canvas {
     padding: 1rem;
     background: var(--dark-bg);
     font-size: 1.25rem;
-    line-height: 1.5;
+    line-height: 1;
     margin-bottom: var(--spacing);
   }
 
@@ -73,6 +76,13 @@ canvas {
     background-color: white;
     font-size: 4rem;
     display: inline;
+    line-height: 1;
+  }
+
+  blockquote h1{
+    color: black;
+    background-color: white;
+    display: block; width: 40%;
     line-height: 1;
   }
 

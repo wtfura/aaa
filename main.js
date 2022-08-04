@@ -2,7 +2,7 @@ import './style.css';
 import * as THREE from 'three';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls';
 
-// Setup
+// Setup ну кароче запуск сцены, камеры с их настройками и включением рендера я думю да
 
 const scene = new THREE.Scene();
 
@@ -19,15 +19,15 @@ camera.position.setX(-3);
 
 renderer.render(scene, camera);
 
-// Torus
+// ПОНЧИК АХАХХАХА
 
 const geometry = new THREE.TorusGeometry(10, 3, 16, 100);
-const material = new THREE.MeshStandardMaterial({ color: 0xff6347 });
+const material = new THREE.MeshStandardMaterial({ color: 0x38005E });
 const torus = new THREE.Mesh(geometry, material);
 
 scene.add(torus);
 
-// Lights
+// Освещение
 
 const pointLight = new THREE.PointLight(0xffffff);
 pointLight.position.set(5, 5, 5);
@@ -42,11 +42,16 @@ scene.add(pointLight, ambientLight);
 // scene.add(lightHelper, gridHelper)
 
 // const controls = new OrbitControls(camera, renderer.domElement);
-
+//звезды
 function addStar() {
-  const geometry = new THREE.SphereGeometry(0.25, 24, 24);
-  const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
-  const star = new THREE.Mesh(geometry, material);
+  //const geometry = new THREE.SphereGeometry(0.7, 24, 24);
+  //const material = new THREE.MeshStandardMaterial({ color: 0xffffff });
+  const starTexure = new THREE.TextureLoader().load('moon.jpg');
+
+  const star = new THREE.Mesh(new THREE.SphereGeometry(0.25, 24, 24),
+  new THREE.MeshStandardMaterial({
+     map: starTexure
+    }));
 
   const [x, y, z] = Array(3)
     .fill()
@@ -58,29 +63,42 @@ function addStar() {
 
 Array(200).fill().forEach(addStar);
 
-// Background
+// // ЛУНА СВИБОРГ
 
-const spaceTexture = new THREE.TextureLoader().load('space.jpg');
+// const moonTexture = new THREE.TextureLoader().load('moon.jpg');
+// //const normalTexture = new THREE.TextureLoader().load('normal.jpg');
+
+// const moon = new THREE.Mesh(
+//   new THREE.SphereGeometry(3, 32, 32),
+//   new THREE.MeshStandardMaterial({
+//     map: moonTexture,
+//     //normalMap: normalTexture,
+//   })
+// );
+
+// задник\бэкграунд
+
+const spaceTexture = new THREE.TextureLoader().load('space.png');
 scene.background = spaceTexture;
 
-// Avatar
+// Куб с моим ебалом
 
-const jeffTexture = new THREE.TextureLoader().load('jeff.png');
+const wtfuraTexture = new THREE.TextureLoader().load('wtfura.jpg');
 
-const jeff = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: jeffTexture }));
+const wtfura = new THREE.Mesh(new THREE.BoxGeometry(3, 3, 3), new THREE.MeshBasicMaterial({ map: wtfuraTexture }));
 
-scene.add(jeff);
+scene.add(wtfura);
 
-// Moon
+// ЛУНА СВИБОРГ
 
 const moonTexture = new THREE.TextureLoader().load('moon.jpg');
-const normalTexture = new THREE.TextureLoader().load('normal.jpg');
+//const normalTexture = new THREE.TextureLoader().load('normal.jpg');
 
 const moon = new THREE.Mesh(
   new THREE.SphereGeometry(3, 32, 32),
   new THREE.MeshStandardMaterial({
     map: moonTexture,
-    normalMap: normalTexture,
+    //normalMap: normalTexture,
   })
 );
 
@@ -89,10 +107,10 @@ scene.add(moon);
 moon.position.z = 30;
 moon.position.setX(-10);
 
-jeff.position.z = -5;
-jeff.position.x = 2;
+wtfura.position.z = -5;
+wtfura.position.x = 2;
 
-// Scroll Animation
+// Scroll Animation Анимация скролинга
 
 function moveCamera() {
   const t = document.body.getBoundingClientRect().top;
@@ -100,8 +118,8 @@ function moveCamera() {
   moon.rotation.y += 0.075;
   moon.rotation.z += 0.05;
 
-  jeff.rotation.y += 0.01;
-  jeff.rotation.z += 0.01;
+  wtfura.rotation.y += 0.01;
+  wtfura.rotation.z += 0.01;
 
   camera.position.z = t * -0.01;
   camera.position.x = t * -0.0002;
@@ -111,7 +129,7 @@ function moveCamera() {
 document.body.onscroll = moveCamera;
 moveCamera();
 
-// Animation Loop
+// Animation Loop 
 
 function animate() {
   requestAnimationFrame(animate);
